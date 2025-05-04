@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
@@ -27,23 +28,21 @@ import lombok.NoArgsConstructor;
 public class BoardModerator {
 
 	@Id
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "board_id", nullable = false)
 	private Board board;
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+	@Builder.Default
+	@Column(name = "can_delete", nullable = false)
+	private boolean canDelete = true;
 
-	@Column(name = "can_pin", nullable = false)
-	private boolean canPin = true;
-
+	@Builder.Default
 	@Column(name = "can_lock", nullable = false)
 	private boolean canLock = true;
 
-	@Column(name = "can_delete", nullable = false)
-	private boolean canDelete = true;
+	@Builder.Default
+	@Column(name = "can_pin", nullable = false)
+	private boolean canPin = true;
 
 	@CreationTimestamp
 	@Column(name = "created_at", nullable = false, updatable = false)
@@ -52,4 +51,9 @@ public class BoardModerator {
 	@UpdateTimestamp
 	@Column(name = "updated_at", nullable = false)
 	private Instant updatedAt;
+
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 }

@@ -4,9 +4,11 @@ import java.time.Instant;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -25,19 +27,20 @@ import lombok.NoArgsConstructor;
 public class ThreadView {
 
 	@Id
+	@UuidGenerator
 	@Column(name = "id", nullable = false)
 	private UUID id;
 
-	@ManyToOne
+	@Column(name = "ip_address", nullable = true)
+	private String ipAddress;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "thread_id", nullable = false)
 	private Thread thread;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
-
-	@Column(name = "ip_address", nullable = true)
-	private String ipAddress;
 
 	@Column(name = "user_agent", nullable = true)
 	private String userAgent;

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ThreadTagId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private UUID thread;
-
 	private Integer tag;
+
+	private UUID thread;
 }

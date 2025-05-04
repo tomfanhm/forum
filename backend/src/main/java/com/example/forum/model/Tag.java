@@ -24,6 +24,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Tag {
 
+	@Column(name = "color", nullable = true)
+	private String color;
+
+	@CreationTimestamp
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private Instant createdAt;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
@@ -31,13 +38,6 @@ public class Tag {
 
 	@Column(name = "name", nullable = false, unique = true, length = 30)
 	private String name;
-
-	@Column(name = "color", nullable = true)
-	private String color;
-
-	@CreationTimestamp
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private Instant createdAt;
 
 	@UpdateTimestamp
 	@Column(name = "updated_at", nullable = false)

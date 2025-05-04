@@ -24,6 +24,38 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserRole {
 
+	@Builder.Default
+	@Column(name = "can_administrate", nullable = false)
+	private boolean canAdministrate = false;
+
+	@Builder.Default
+	@Column(name = "can_create_posts", nullable = false)
+	private boolean canCreatePosts = true;
+
+	@Builder.Default
+	@Column(name = "can_create_threads", nullable = false)
+	private boolean canCreateThreads = true;
+
+	@Builder.Default
+	@Column(name = "can_moderate", nullable = false)
+	private boolean canModerate = false;
+
+	@Builder.Default
+	@Column(name = "can_report", nullable = false)
+	private boolean canReport = true;
+
+	@Builder.Default
+	@Column(name = "can_upload_attachments", nullable = false)
+	private boolean canUploadAttachments = true;
+
+	@Builder.Default
+	@Column(name = "can_vote", nullable = false)
+	private boolean canVote = true;
+
+	@CreationTimestamp
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private Instant createdAt;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
@@ -31,31 +63,6 @@ public class UserRole {
 
 	@Column(name = "name", nullable = false, unique = true)
 	private String name;
-
-	@Column(name = "can_create_threads", nullable = false)
-	private boolean canCreateThreads = true;
-
-	@Column(name = "can_create_posts", nullable = false)
-	private boolean canCreatePosts = true;
-
-	@Column(name = "can_upload_attachments", nullable = false)
-	private boolean canUploadAttachments = true;
-
-	@Column(name = "can_vote", nullable = false)
-	private boolean canVote = true;
-
-	@Column(name = "can_report", nullable = false)
-	private boolean canReport = true;
-
-	@Column(name = "can_moderate", nullable = false)
-	private boolean canModerate = false;
-
-	@Column(name = "can_administrate", nullable = false)
-	private boolean canAdministrate = false;
-
-	@CreationTimestamp
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private Instant createdAt;
 
 	@UpdateTimestamp
 	@Column(name = "updated_at", nullable = false)

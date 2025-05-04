@@ -24,6 +24,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BoardCategory {
 
+	@CreationTimestamp
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private Instant createdAt;
+
+	@Column(name = "display_order", nullable = false)
+	@Builder.Default
+	private Integer displayOrder = 0;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
@@ -31,13 +39,6 @@ public class BoardCategory {
 
 	@Column(name = "name", nullable = false, unique = true)
 	private String name;
-
-	@Column(name = "display_order", nullable = false)
-	private Integer displayOrder = 0;
-
-	@CreationTimestamp
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private Instant createdAt;
 
 	@UpdateTimestamp
 	@Column(name = "updated_at", nullable = false)

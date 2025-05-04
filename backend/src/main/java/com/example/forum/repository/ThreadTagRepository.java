@@ -1,0 +1,11 @@
+package com.example.forum.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.forum.model.ThreadTag;
+import com.example.forum.model.ThreadTagId;
+
+@Repository
+public interface ThreadTagRepository extends JpaRepository<ThreadTag, ThreadTagId> {
+}

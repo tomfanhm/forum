@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import com.example.forum.enums.VoteTarget;
 import com.example.forum.enums.VoteValue;
@@ -31,30 +32,31 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Vote {
 
+	@CreationTimestamp
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private Instant createdAt;
+
 	@Id
+	@UuidGenerator
 	@Column(name = "id", nullable = false)
 	private UUID id;
+
+	@Column(name = "target_id", nullable = false)
+	private UUID targetId;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "target_type", nullable = false)
+	private VoteTarget targetType;
+
+	@UpdateTimestamp
+	@Column(name = "updated_at", nullable = false)
+	private Instant updatedAt;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "target_type", nullable = false)
-	private VoteTarget targetType;
-
-	@Column(name = "target_id", nullable = false)
-	private UUID targetId;
-
-	@Enumerated(EnumType.STRING)
 	@Column(name = "value", nullable = false)
 	private VoteValue value;
-
-	@CreationTimestamp
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private Instant createdAt;
-
-	@UpdateTimestamp
-	@Column(name = "updated_at", nullable = false)
-	private Instant updatedAt;
 }

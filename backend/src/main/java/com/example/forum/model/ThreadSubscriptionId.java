@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ThreadSubscriptionId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private UUID user;
-
 	private UUID thread;
+
+	private UUID user;
 }
