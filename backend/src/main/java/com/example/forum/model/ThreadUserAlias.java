@@ -15,16 +15,22 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @IdClass(ThreadUserAliasId.class)
 @Table(name = "thread_user_aliases")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ThreadUserAlias {
 
 	@Column(name = "alias", nullable = false)
@@ -34,6 +40,8 @@ public class ThreadUserAlias {
 	@Column(name = "created_at", nullable = false, updatable = false)
 	private Instant createdAt;
 
+	@ToString.Include(name = "threadId")
+	@EqualsAndHashCode.Include
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "thread_id", nullable = false)
@@ -43,6 +51,8 @@ public class ThreadUserAlias {
 	@Column(name = "updated_at", nullable = false)
 	private Instant updatedAt;
 
+	@ToString.Include(name = "userId")
+	@EqualsAndHashCode.Include
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)

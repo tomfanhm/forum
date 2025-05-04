@@ -10,5 +10,6 @@ import com.example.forum.model.Post;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, UUID> {
+
 	List<Post> findByThreadId(UUID threadId);
 }

@@ -10,5 +10,6 @@ import com.example.forum.model.Notification;
 
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, UUID> {
+
 	List<Notification> findByUserId(UUID userId);
 }

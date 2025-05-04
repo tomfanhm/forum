@@ -15,18 +15,26 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @IdClass(BoardModeratorId.class)
 @Table(name = "board_moderators")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class BoardModerator {
 
+	@ToString.Include(name = "boardId")
+	@EqualsAndHashCode.Include
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "board_id", nullable = false)
@@ -52,6 +60,8 @@ public class BoardModerator {
 	@Column(name = "updated_at", nullable = false)
 	private Instant updatedAt;
 
+	@ToString.Include(name = "userId")
+	@EqualsAndHashCode.Include
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)

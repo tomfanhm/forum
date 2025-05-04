@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @SuppressWarnings("unused")
 public class ThreadSubscriptionId implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	private UUID thread;

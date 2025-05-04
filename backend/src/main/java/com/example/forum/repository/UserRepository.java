@@ -10,5 +10,6 @@ import com.example.forum.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
+
 	Optional<User> findByFirebaseUid(String firebaseUid);
 }

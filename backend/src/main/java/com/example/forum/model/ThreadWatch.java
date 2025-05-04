@@ -15,16 +15,22 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @IdClass(ThreadWatchId.class)
 @Table(name = "thread_watches")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ThreadWatch {
 
 	@CreationTimestamp
@@ -35,6 +41,8 @@ public class ThreadWatch {
 	@Column(name = "last_read_at", nullable = false)
 	private Instant lastReadAt = Instant.now();
 
+	@ToString.Include(name = "threadId")
+	@EqualsAndHashCode.Include
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "thread_id", nullable = false)
@@ -44,6 +52,8 @@ public class ThreadWatch {
 	@Column(name = "updated_at", nullable = false)
 	private Instant updatedAt;
 
+	@ToString.Include(name = "userId")
+	@EqualsAndHashCode.Include
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)

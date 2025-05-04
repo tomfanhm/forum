@@ -13,15 +13,21 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "user_preferences")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class UserPreference {
 
 	@CreationTimestamp
@@ -44,6 +50,8 @@ public class UserPreference {
 	@Column(name = "updated_at", nullable = false)
 	private Instant updatedAt;
 
+	@ToString.Include
+	@EqualsAndHashCode.Include
 	@Id
 	@OneToOne
 	@JoinColumn(name = "user_id", nullable = false)

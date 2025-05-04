@@ -10,5 +10,6 @@ import com.example.forum.model.Thread;
 
 @Repository
 public interface ThreadRepository extends JpaRepository<Thread, UUID> {
+
 	List<Thread> findByBoardId(Integer boardId);
 }

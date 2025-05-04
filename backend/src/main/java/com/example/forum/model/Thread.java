@@ -16,15 +16,21 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "threads")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Thread {
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -46,6 +52,8 @@ public class Thread {
 	@Column(name = "is_deleted", nullable = false)
 	private boolean deleted = false;
 
+	@ToString.Include
+	@EqualsAndHashCode.Include
 	@Id
 	@UuidGenerator
 	@Column(name = "id", nullable = false)
