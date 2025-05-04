@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuppressWarnings("unused")
 public class BoardModeratorId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
