@@ -1,20 +1,20 @@
 package com.example.forum.model;
 
-import java.io.Serializable;
-import java.util.UUID;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ThreadTagId implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Integer tag;
+    private Integer tag;
 
-	private UUID thread;
+    private UUID thread;
 }

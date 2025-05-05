@@ -1,15 +1,10 @@
 package com.example.forum.dto.request;
 
-import java.time.Instant;
-
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.time.Instant;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Getter
@@ -19,5 +14,5 @@ import lombok.Setter;
 @Builder
 public class UpdateThreadWatchRequest {
 
-	private Instant lastReadAt;
+    private Instant lastReadAt;
 }

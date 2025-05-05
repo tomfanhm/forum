@@ -1,11 +1,10 @@
 package com.example.forum.repository;
 
-import java.util.UUID;
-
+import com.example.forum.model.ThreadView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.forum.model.ThreadView;
+import java.util.UUID;
 
 @Repository
 public interface ThreadViewRepository extends JpaRepository<ThreadView, UUID> {

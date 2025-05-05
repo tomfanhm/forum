@@ -2,12 +2,7 @@ package com.example.forum.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Getter
@@ -17,7 +12,7 @@ import lombok.Setter;
 @Builder
 public class RegisterRequest {
 
-	private String displayName;
-	private String email;
-	private String password;
+    private String displayName;
+    private String email;
+    private String password;
 }

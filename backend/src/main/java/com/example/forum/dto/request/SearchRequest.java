@@ -1,15 +1,10 @@
 package com.example.forum.dto.request;
 
-import java.util.List;
-
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Getter
@@ -19,6 +14,6 @@ import lombok.Setter;
 @Builder
 public class SearchRequest {
 
-	private String query;
-	private List<String> types;
+    private String query;
+    private List<String> types;
 }

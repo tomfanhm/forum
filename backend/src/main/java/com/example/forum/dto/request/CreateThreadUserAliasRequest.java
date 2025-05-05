@@ -1,15 +1,10 @@
 package com.example.forum.dto.request;
 
-import java.util.UUID;
-
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.UUID;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Getter
@@ -19,6 +14,6 @@ import lombok.Setter;
 @Builder
 public class CreateThreadUserAliasRequest {
 
-	private String alias;
-	private UUID userId;
+    private String alias;
+    private UUID userId;
 }

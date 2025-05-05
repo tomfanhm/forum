@@ -1,25 +1,11 @@
 package com.example.forum.model;
 
-import java.time.Instant;
-
+import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.time.Instant;
 
 @Entity
 @IdClass(ThreadWatchId.class)
@@ -33,29 +19,29 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ThreadWatch {
 
-	@CreationTimestamp
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private Instant createdAt;
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Instant createdAt;
 
-	@Builder.Default
-	@Column(name = "last_read_at", nullable = false)
-	private Instant lastReadAt = Instant.now();
+    @Builder.Default
+    @Column(name = "last_read_at", nullable = false)
+    private Instant lastReadAt = Instant.now();
 
-	@ToString.Include(name = "threadId")
-	@EqualsAndHashCode.Include
-	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "thread_id", nullable = false)
-	private Thread thread;
+    @ToString.Include(name = "threadId")
+    @EqualsAndHashCode.Include
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "thread_id", nullable = false)
+    private Thread thread;
 
-	@UpdateTimestamp
-	@Column(name = "updated_at", nullable = false)
-	private Instant updatedAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
-	@ToString.Include(name = "userId")
-	@EqualsAndHashCode.Include
-	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+    @ToString.Include(name = "userId")
+    @EqualsAndHashCode.Include
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
