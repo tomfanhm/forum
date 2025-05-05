@@ -1,4 +1,5 @@
 import { auth } from "~/config/firebase-config";
+import { LoginRequest, RegisterRequest } from "~/schemas/request/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -7,13 +8,27 @@ import {
   UserCredential,
 } from "firebase/auth";
 
-export const login = (email: string, pw: string): Promise<UserCredential> =>
-  signInWithEmailAndPassword(auth, email, pw);
+export const login = async (request: LoginRequest): Promise<UserCredential> => {
+  return await signInWithEmailAndPassword(
+    auth,
+    request.email,
+    request.password
+  );
+};
 
-export const register = (email: string, pw: string): Promise<UserCredential> =>
-  createUserWithEmailAndPassword(auth, email, pw);
+export const register = async (
+  request: RegisterRequest
+): Promise<UserCredential> => {
+  return await createUserWithEmailAndPassword(
+    auth,
+    request.email,
+    request.password
+  );
+};
 
-export const logout = (): Promise<void> => signOut(auth);
+export const logout = async (): Promise<void> => {
+  return await signOut(auth);
+};
 
 export const getCurrentUser = (): User | null => {
   return auth.currentUser;
