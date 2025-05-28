@@ -87,3 +87,11 @@ export const loginWithGoogle = async (): Promise<AuthResponse | null> => {
   }
   return null
 }
+
+export const logout = async (): Promise<void> => {
+  try {
+    await auth.signOut()
+  } catch (error: unknown) {
+    showErrorToast(error)
+  }
+}
