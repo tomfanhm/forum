@@ -34,11 +34,9 @@ const Page: React.FC = () => {
       </div>
       <p className="text-muted-foreground mt-10 text-center text-sm">
         Already a member?
-        <Link href="/login">
-          <Button variant="link" className="ml-1">
-            Login now
-          </Button>
-        </Link>
+        <Button variant="link" className="ml-1" asChild>
+          <Link href="/login">Login now</Link>
+        </Button>
       </p>
     </div>
   )

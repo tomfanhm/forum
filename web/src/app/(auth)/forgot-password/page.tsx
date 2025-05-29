@@ -1,14 +1,13 @@
-import React from "react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
-import LoginForm from "@/components/auth/login-form"
+import ForgotPasswordForm from "@/components/auth/forgot-password-form"
 
 export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to your account",
+  title: "Forgot Password",
+  description: "Reset your password",
 }
 
 const Page: React.FC = () => {
@@ -26,19 +25,16 @@ const Page: React.FC = () => {
           />
         </Link>
         <h2 className="text-foreground mt-6 text-center text-2xl leading-9 font-bold tracking-tight">
-          Login to your account
+          Reset your password
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-        <LoginForm redirectUrl="/dashboard" />
+        <ForgotPasswordForm />
       </div>
-      <Button variant="link" asChild className="mt-10">
-        <Link href="/forgot-password">Forgot password?</Link>
-      </Button>
-      <p className="text-muted-foreground mt-2 text-center text-sm">
-        Not a member?
+      <p className="text-muted-foreground mt-10 text-center text-sm">
+        Remembered your password?
         <Button variant="link" className="ml-1" asChild>
-          <Link href="/register">Register now</Link>
+          <Link href="/login">Login</Link>
         </Button>
       </p>
     </div>

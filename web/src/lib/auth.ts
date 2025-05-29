@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth"
@@ -10,6 +11,7 @@ import {
   AuthResponse,
   LoginRequest,
   RegisterRequest,
+  ResetPasswordRequest,
 } from "@/schemas/auth"
 
 import client from "./client"
@@ -94,4 +96,16 @@ export const logout = async (): Promise<void> => {
   } catch (error: unknown) {
     showErrorToast(error)
   }
+}
+
+export const resetPassword = async (
+  request: ResetPasswordRequest
+): Promise<boolean> => {
+  try {
+    await sendPasswordResetEmail(auth, request.email)
+    return true
+  } catch (error: unknown) {
+    showErrorToast(error)
+  }
+  return false
 }

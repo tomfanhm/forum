@@ -24,12 +24,12 @@ const FallbackPage: React.FC<FallbackPageProps> = ({
           {description}
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
-          <Link href="/">
-            <Button>Go back home</Button>
-          </Link>
-          <Link href="/contact">
-            <Button variant="outline">Contact support</Button>
-          </Link>
+          <Button asChild>
+            <Link href="/">Go back home</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/contact">Contact support</Link>
+          </Button>
         </div>
       </div>
     </main>
