@@ -7,6 +7,6 @@ export const metadata: Metadata = {
 }
 
 const Page: React.FC = () => {
-  return <div>Have a good coding</div>
+  return <div></div>
 }
 export default Page

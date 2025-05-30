@@ -39,7 +39,7 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
         return excludedPaths.stream()
                 .anyMatch(pattern -> pathMatcher.match(pattern, path));
     }
-    
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,

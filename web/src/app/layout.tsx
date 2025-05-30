@@ -7,6 +7,7 @@ import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
 import FirebaseAuthListener from "@/components/firebase-auth-listener"
+import Providers from "@/components/providers"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -39,12 +40,14 @@ export default function RootLayout({
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <div className="flex-1">{children}</div>
-            </div>
-            <TailwindIndicator />
-            <Toaster />
-            <FirebaseAuthListener />
+            <Providers>
+              <div className="relative flex min-h-screen flex-col">
+                <div className="flex-1">{children}</div>
+              </div>
+              <TailwindIndicator />
+              <Toaster />
+              <FirebaseAuthListener />
+            </Providers>
           </ThemeProvider>
         </body>
       </html>
