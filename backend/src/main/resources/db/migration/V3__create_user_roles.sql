@@ -13,13 +13,8 @@ CREATE TRIGGER update_user_roles_timestamp
     EXECUTE FUNCTION update_timestamp();
 
 INSERT INTO user_roles(name)
-VALUES ('ROLE_ADMIN');
+VALUES ('ROLE_ADMIN'),
+       ('ROLE_MODERATOR'),
+       ('ROLE_USER'),
+       ('ROLE_PREMIUM_USER');
 
-INSERT INTO user_roles(name)
-VALUES ('ROLE_MODERATOR');
-
-INSERT INTO user_roles(name)
-VALUES ('ROLE_USER');
-
-INSERT INTO user_roles(name)
-VALUES ('ROLE_PREMIUM_USER');

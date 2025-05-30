@@ -7,9 +7,13 @@ CREATE TABLE users
     bio               text,
     location          text,
     website           text,
+    birthday          date,
+    gender            gender,
     email             text,
     email_verified    boolean     NOT NULL DEFAULT FALSE,
     is_active         boolean     NOT NULL DEFAULT TRUE,
+    is_banned         boolean     NOT NULL DEFAULT FALSE,
+    banned_at         timestamptz,
     reputation_points integer     NOT NULL DEFAULT 0,
     created_at        timestamptz NOT NULL DEFAULT NOW(),
     updated_at        timestamptz NOT NULL DEFAULT NOW()
@@ -20,3 +24,4 @@ CREATE TRIGGER update_users_timestamp
     ON users
     FOR EACH ROW
     EXECUTE FUNCTION update_timestamp();
+
