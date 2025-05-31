@@ -10,7 +10,7 @@ CREATE TRIGGER update_user_roles_timestamp
     BEFORE UPDATE
     ON user_roles
     FOR EACH ROW
-    EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 
 INSERT INTO user_roles(name)
 VALUES ('ROLE_ADMIN'),

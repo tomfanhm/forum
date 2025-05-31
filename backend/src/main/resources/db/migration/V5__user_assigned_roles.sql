@@ -11,5 +11,5 @@ CREATE TRIGGER update_user_assigned_roles_timestamp
     BEFORE UPDATE
     ON user_assigned_roles
     FOR EACH ROW
-    EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 

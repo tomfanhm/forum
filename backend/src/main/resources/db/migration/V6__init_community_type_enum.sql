@@ -1,5 +1,5 @@
-CREATE TYPE community_type AS ENUM(
+CREATE TYPE community_type AS ENUM (
     'PUBLIC',
     'PRIVATE'
-);
+    );
 

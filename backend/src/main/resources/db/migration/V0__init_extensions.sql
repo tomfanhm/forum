@@ -1,3 +1,3 @@
 CREATE
-EXTENSION IF NOT EXISTS pgcrypto;
+    EXTENSION IF NOT EXISTS pgcrypto;
 

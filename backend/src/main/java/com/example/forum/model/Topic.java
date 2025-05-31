@@ -25,9 +25,6 @@ public class Topic {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "description")
-    private String description;
-
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
@@ -35,4 +32,8 @@ public class Topic {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    @Column(name = "count", nullable = false)
+    @Builder.Default
+    private Integer count = 0;
 }

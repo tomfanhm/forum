@@ -23,5 +23,5 @@ CREATE TRIGGER update_users_timestamp
     BEFORE UPDATE
     ON users
     FOR EACH ROW
-    EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 

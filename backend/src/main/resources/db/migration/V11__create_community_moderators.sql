@@ -6,5 +6,5 @@ CREATE TABLE community_moderators
     PRIMARY KEY (user_id, community_id)
 );
 
-CREATE INDEX IF NOT EXISTS idx_community_moderators_community ON community_moderators(community_id);
+CREATE INDEX IF NOT EXISTS idx_community_moderators_community ON community_moderators (community_id);
 

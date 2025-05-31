@@ -6,5 +6,5 @@ CREATE TABLE user_subscriptions
     PRIMARY KEY (user_id, community_id)
 );
 
-CREATE INDEX IF NOT EXISTS idx_user_subscriptions_community ON user_subscriptions(community_id);
+CREATE INDEX IF NOT EXISTS idx_user_subscriptions_community ON user_subscriptions (community_id);
 

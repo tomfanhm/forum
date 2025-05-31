@@ -6,27 +6,27 @@ export type Gender = z.infer<typeof gender>
 export const updateProfileRequest = z.object({
   display_name: z
     .string()
-    .max(255, { message: "Display name must be at most 255 characters" })
+    .max(255, { message: "Display name must be at most 255 characters." })
     .optional(),
   avatar_url: z
     .string()
-    .url({ message: "Avatar URL must be a valid URL" })
-    .max(2048, { message: "Avatar URL is too long" })
+    .url({ message: "Avatar URL must be a valid URL." })
+    .max(2048, { message: "Avatar URL is too long." })
     .optional(),
   birthday: z.date().optional(),
   gender: gender.optional(),
   bio: z
     .string()
-    .max(3000, { message: "Bio must be at most 3000 characters" })
+    .max(3000, { message: "Bio must be at most 3000 characters." })
     .optional(),
   location: z
     .string()
-    .max(255, { message: "Location must be at most 255 characters" })
+    .max(255, { message: "Location must be at most 255 characters." })
     .optional(),
   website: z
     .string()
-    .url({ message: "Website URL must be a valid URL" })
-    .max(2048, { message: "Website URL is too long" })
+    .url({ message: "Website URL must be a valid URL." })
+    .max(2048, { message: "Website URL is too long." })
     .optional(),
 })
 export type UpdateProfileRequest = z.infer<typeof updateProfileRequest>

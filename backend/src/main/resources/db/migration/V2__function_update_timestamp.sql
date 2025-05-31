@@ -1,12 +1,13 @@
 CREATE
-OR REPLACE FUNCTION update_timestamp()
+    OR REPLACE FUNCTION update_timestamp()
     RETURNS TRIGGER
-    AS $$
+AS
+$$
 BEGIN
     NEW.updated_at
-= NOW();
-RETURN NEW;
+        = NOW();
+    RETURN NEW;
 END;
 $$
-LANGUAGE plpgsql;
+    LANGUAGE plpgsql;
 

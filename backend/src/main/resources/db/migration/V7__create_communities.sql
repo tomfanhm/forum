@@ -17,5 +17,5 @@ CREATE TRIGGER update_communities_timestamp
     BEFORE UPDATE
     ON communities
     FOR EACH ROW
-    EXECUTE FUNCTION update_timestamp();
+EXECUTE FUNCTION update_timestamp();
 

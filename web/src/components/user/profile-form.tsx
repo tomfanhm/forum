@@ -21,7 +21,7 @@ import { useAuthStore } from "@/stores/use-auth-store"
 
 import DashboardFallback from "../dashboard-fallback"
 import DashboardLoading from "../dashboard-loading"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { Avatar, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 import { Calendar } from "../ui/calendar"
 import {
@@ -107,8 +107,6 @@ const ProfileFormView: React.FC<ProfileFormViewProps> = ({
   onSubmit,
   isSubmitting,
 }) => {
-  const { auth } = useAuthStore()
-
   const form = useForm<UpdateProfileRequest>({
     defaultValues: {
       display_name: defaultValues.display_name || undefined,
