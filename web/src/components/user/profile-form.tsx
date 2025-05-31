@@ -1,10 +1,10 @@
 "use client"
 
-import React from "react"
+import React, { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, UploadCloud, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
@@ -14,12 +14,14 @@ import {
   updateProfileRequest,
   UpdateProfileRequest,
 } from "@/schemas/user"
+import { uploadImage } from "@/lib/firebase/storage"
 import { getProfile, updateProfile } from "@/lib/user"
-import { cn } from "@/lib/utils"
+import { cn, showErrorToast } from "@/lib/utils"
 import { useAuthStore } from "@/stores/use-auth-store"
 
 import DashboardFallback from "../dashboard-fallback"
 import DashboardLoading from "../dashboard-loading"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Button } from "../ui/button"
 import { Calendar } from "../ui/calendar"
 import {
@@ -105,6 +107,8 @@ const ProfileFormView: React.FC<ProfileFormViewProps> = ({
   onSubmit,
   isSubmitting,
 }) => {
+  const { auth } = useAuthStore()
+
   const form = useForm<UpdateProfileRequest>({
     defaultValues: {
       display_name: defaultValues.display_name || undefined,
@@ -117,6 +121,29 @@ const ProfileFormView: React.FC<ProfileFormViewProps> = ({
     },
     resolver: zodResolver(updateProfileRequest),
   })
+
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [uploading, setUploading] = useState(false)
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    // Validate file size, within 3 MB
+    if (file.size > 3 * 1024 * 1024) {
+      toast.error("File size exceeds 3 MB limit.")
+      return
+    }
+    try {
+      setUploading(true)
+      const url = await uploadImage(file, "images/avatar")
+      form.setValue("avatar_url", url, { shouldValidate: true })
+      toast.success("Avatar uploaded.")
+    } catch (error) {
+      showErrorToast(error)
+    } finally {
+      setUploading(false)
+    }
+  }
 
   return (
     <Form {...form}>
@@ -156,7 +183,47 @@ const ProfileFormView: React.FC<ProfileFormViewProps> = ({
                 <FormItem className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                   <FormLabel>Avatar URL</FormLabel>
                   <div className="mt-2 sm:col-span-2 sm:mt-0">
-                    <FormControl>
+                    <div className="flex items-center gap-4">
+                      <Avatar className="size-16 rounded-lg">
+                        <AvatarImage
+                          src={field.value || ""}
+                          alt="User Avatar"
+                        />
+                      </Avatar>
+                      {/* Image Upload */}
+                      <div className="flex flex-col gap-2">
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleFileChange}
+                        />
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          onClick={() => fileInputRef.current?.click()}
+                          disabled={uploading}
+                        >
+                          {uploading ? <LoadingSpinner /> : <UploadCloud />}
+                        </Button>
+                        {field.value && (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="icon"
+                            onClick={() =>
+                              form.setValue("avatar_url", undefined)
+                            }
+                            disabled={uploading}
+                          >
+                            <X />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                    <FormControl className="mt-4">
                       <Input
                         type="text"
                         placeholder="https://example.com/avatar.png"
