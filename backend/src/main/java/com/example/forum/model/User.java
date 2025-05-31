@@ -1,11 +1,13 @@
 package com.example.forum.model;
 
+import com.example.forum.enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -17,22 +19,16 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(onlyExplicitlyIncluded = true)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
 
-    @ToString.Include
-    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @ToString.Include
     @Column(name = "firebase_uid", nullable = false, unique = true)
     private String firebaseUid;
 
-    @ToString.Include
     @Column(name = "email", nullable = true)
     private String email;
 
@@ -40,7 +36,6 @@ public class User {
     @Builder.Default
     private boolean emailVerified = false;
 
-    @ToString.Include
     @Column(name = "display_name", nullable = true)
     private String displayName;
 
@@ -56,11 +51,24 @@ public class User {
     @Column(name = "website", nullable = true)
     private String website;
 
+    @Column(name = "birthday", nullable = true)
+    private LocalDate birthday;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", nullable = true)
+    private Gender gender;
+
     @Column(name = "is_active", nullable = false)
     @Builder.Default
     private boolean isActive = true;
 
-    @ToString.Include
+    @Column(name = "is_banned", nullable = false)
+    @Builder.Default
+    private boolean isBanned = false;
+
+    @Column(name = "banned_at", nullable = true)
+    private Instant bannedAt;
+
     @Column(name = "reputation_points", nullable = false)
     @Builder.Default
     private Integer reputationPoints = 0;

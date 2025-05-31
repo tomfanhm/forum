@@ -17,7 +17,12 @@ type DashboardProps = {
 const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   const { auth, loading } = useAuthStore()
 
-  if (loading) return <LoadingSpinner />
+  if (loading)
+    return (
+      <div className="mx-auto flex min-h-screen items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    )
 
   if (!auth) unauthorized()
 

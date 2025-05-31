@@ -8,7 +8,7 @@ CREATE TABLE users
     location          text,
     website           text,
     birthday          date,
-    gender            gender,
+    gender            text,
     email             text,
     email_verified    boolean     NOT NULL DEFAULT FALSE,
     is_active         boolean     NOT NULL DEFAULT TRUE,

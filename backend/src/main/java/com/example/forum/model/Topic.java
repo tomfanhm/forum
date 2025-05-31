@@ -1,6 +1,5 @@
 package com.example.forum.model;
 
-import com.example.forum.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,25 +9,27 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user_roles")
+@Table(name = "topics")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserRole {
+public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private UUID id;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "name", nullable = false, unique = true)
-    private Role name;
+    private String name;
+
+    @Column(name = "description")
+    private String description;
 
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
     @UpdateTimestamp

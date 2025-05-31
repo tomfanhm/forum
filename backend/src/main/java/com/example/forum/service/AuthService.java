@@ -80,6 +80,7 @@ public class AuthService {
         user.setAvatarUrl(decodedToken.getPicture());
         user.setEmailVerified(decodedToken.isEmailVerified());
         user.setActive(true);
+        user.setGender(null);
 
         // Assign default role (ROLE_USER)
         UserRole defaultUserRole = userRoleRepository.findByName(Role.ROLE_USER)

@@ -120,3 +120,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+.rdp-vhidden {
+  @apply hidden;
+}
